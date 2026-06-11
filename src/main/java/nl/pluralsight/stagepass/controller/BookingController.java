@@ -36,10 +36,10 @@ public class BookingController {
         return ResponseEntity.ok(bookingService.getBookingsByConcert(concertId));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking) {
-        Booking created = bookingService.createBooking(booking);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public Booking createBooking(@RequestBody Booking booking) {
+       return bookingService.createBooking(booking);
     }
 
     @DeleteMapping("/{id}")

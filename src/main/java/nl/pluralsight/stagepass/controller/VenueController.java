@@ -30,10 +30,10 @@ public class VenueController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Venue> createVenue(@RequestBody Venue venue) {
-        Venue created = venueService.createVenue(venue);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public Venue createVenue(@RequestBody Venue venue) {
+       return venueService.createVenue(venue);
     }
 
     @PutMapping("/{id}")

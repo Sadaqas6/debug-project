@@ -34,10 +34,10 @@ public class ConcertController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Concert> createConcert(@RequestBody Concert concert) {
-        Concert created = concertService.createConcert(concert);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public Concert createConcert(@RequestBody Concert concert) {
+        return concertService.createConcert(concert);
     }
 
     @PutMapping("/{id}")

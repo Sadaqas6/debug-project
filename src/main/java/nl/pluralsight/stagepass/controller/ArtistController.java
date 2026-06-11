@@ -30,10 +30,10 @@ public class ArtistController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<Artist> createArtist(@RequestBody Artist artist) {
-        Artist created = artistService.createArtist(artist);
-        return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    public Artist createArtist(@RequestBody Artist artist) {
+        return artistService.createArtist(artist);
     }
 
     @PutMapping("/{id}")
