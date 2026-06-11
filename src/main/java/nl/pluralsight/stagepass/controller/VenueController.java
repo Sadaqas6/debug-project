@@ -33,7 +33,7 @@ public class VenueController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Venue createVenue(@RequestBody Venue venue) {
-       return venueService.createVenue(venue);
+        return venueService.createVenue(venue);
     }
 
     @PutMapping("/{id}")
@@ -43,11 +43,9 @@ public class VenueController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteVenue(@PathVariable Long id) {
-        if (venueService.deleteVenue(id)) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    public void deleteVenue(@PathVariable Long id) {
+        venueService.deleteVenue(id);
     }
 }

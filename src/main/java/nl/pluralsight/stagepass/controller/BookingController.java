@@ -42,11 +42,9 @@ public class BookingController {
        return bookingService.createBooking(booking);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> cancelBooking(@PathVariable Long id) {
-        if (bookingService.cancelBooking(id)) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    public void cancelBooking(@PathVariable Long id) {
+        bookingService.cancelBooking(id);
     }
 }
