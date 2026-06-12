@@ -38,9 +38,13 @@ public class BookingService {
 
     @Transactional
     public Booking createBooking(Booking booking) {
+
         Concert concert = concertRepository.findById(booking.getConcert().getId())
                 .orElseThrow(() -> new RuntimeException("Concert not found"));
 
+        if (concert.getAvailableSeats() < booking.getNumberOfTickets()) {
+            throw new InsufficientSeatsException("Not enough seats available");
+        }
 
         booking.setTotalPrice(concert.getTicketPrice().multiply(BigDecimal.valueOf(booking.getNumberOfTickets())));
 

@@ -17,10 +17,6 @@ public class ConcertService {
         this.concertRepository = concertRepository;
     }
 
-    public List<Concert> getAllConcerts() {
-        return concertRepository.findAll();
-    }
-
     public Optional<Concert> getConcertById(Long id) {
         return concertRepository.findById(id);
     }
